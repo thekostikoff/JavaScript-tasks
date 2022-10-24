@@ -5,11 +5,11 @@ const massive = [
 ];
 
 
-let arrayFilter = massive.filter(function (e) {
-	return e.age > 232132 && e.surname.length > 5;
-});
+// let arrayFilter = massive.filter(function (e) {
+// 	return e.age > 232132 && e.surname.length > 5;
+// });
 
-console.log(arrayFilter);
+// console.log(arrayFilter);
 
 function arrayFilterTwo() {
 	for (i = 0; i < massive.length; i++) {
@@ -25,11 +25,11 @@ function arrayFilterTwo() {
 arrayFilterTwo();
 
 
-let arrayFind = massive.find(function (e) {
-	return e.birth < 2000;
-});
+// let arrayFind = massive.find(function (e) {
+// 	return e.birth < 2000;
+// });
 
-console.log(arrayFind);
+// console.log(arrayFind);
 
 function arrayFindTwo() {
 	for (l = 0; l < massive.length; l++) {
@@ -46,9 +46,9 @@ arrayFindTwo();
 
 
 
-let arrayPush = massive.push({ gender: "male", birth: 56, surname: "socrat", age: 1 });
+// let arrayPush = massive.push({ gender: "male", birth: 56, surname: "socrat", age: 1 });
 
-console.log(massive);
+// console.log(massive);
 
 function arrayPushTwo() {
 	massive[3] = { gender: "male", birth: 56, surname: "socrat", age: 1 };
@@ -59,9 +59,9 @@ arrayPushTwo();
 
 const numbers = [123.65, 65546, 333.3165];
 
-let arrayReduce = numbers.reduce((total, amount) => total - amount);
+// let arrayReduce = numbers.reduce((total, amount) => total - amount);
 
-console.log(arrayReduce);
+// console.log(arrayReduce);
 
 function arrayReduceTwo() {
 	result = 0;
