@@ -7,10 +7,10 @@ function arraySumOne(array) {
 			word = word.map((number) => (number >= 10) ? String(word).slice(1) : number);
 			let total = someArray.push(String(word));
 			console.log(someArray);
-			console.log(total);
-			return someArray;
+			console.log(total)
 		}
+		return array;
 	}
 }
 
-arraySumOne([1, 2, 15, 25, 35, 9]); // 2 4 18 29 40
+arraySumOne([1, 2, 15, 25, 35, 9]); // 2 4 18 29 40 15
