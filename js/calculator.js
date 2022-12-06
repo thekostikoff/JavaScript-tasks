@@ -7,6 +7,8 @@ const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', 'Х', '/', '%', '+/-'];
 
 const out = document.querySelector('.calc__screen p');
+const btn = document.querySelectorAll('.btn');
+const info = document.querySelectorAll('.info');
 
 function clearAll() {
 	a = '';
@@ -28,29 +30,44 @@ document.querySelector('.buttons').onclick = (event) => {
 
 	if (digit.includes(key)) {
 		if (b === '' && sign === '') {
-			a += key;
-			console.log(a, b, sign);
-			out.textContent = a;
-		}
-		else if (a !== '' && b !== '' && finish) {
+			if (key === '.' && a.includes('.')) {
+				a += '';
+				out.textContent = a;
+			} else {
+				a += key;
+				out.textContent = a;
+			}
+		} else if (a !== '' && b !== '' && finish) {
 			b = key;
 			finish = false;
 			out.textContent = b;
 		}
 		else {
-			b += key;
-			out.textContent = b;
+			if (key === '.' && b.includes('.')) {
+				b += '';
+				out.textContent = b;
+			} else {
+				b += key;
+				out.textContent = b;
+			}
 		}
-		console.log(a, b, sign);
 		return;
 	}
-
 	if (action.includes(key)) {
 		sign = key;
 		out.textContent = sign;
-		console.log(a, b, sign);
+		if (key === '+/-') {
+			a = (-1) * a;
+			out.textContent = a;
+		}
 		return;
 	}
+
+	if (key === '=' && a == '' && b == '') {
+		out.textContent = 0;
+		return;
+	}
+
 	if (key === '=') {
 		if (b === '') b = a;
 		switch (sign) {
@@ -66,10 +83,10 @@ document.querySelector('.buttons').onclick = (event) => {
 			case "%":
 				a = (a / 100) * b;
 				break;
-			case "+/-":
-				a = a * (-1);
-				b = b * (-1);
-				break;
+			// case "+/-":
+			// 	a = a * (-1);
+			// 	b = b * (-1);
+			// 	break;
 			case "/":
 				if (b === '0') {
 					out.textContent = 'Ошибка';
@@ -83,6 +100,21 @@ document.querySelector('.buttons').onclick = (event) => {
 		}
 		finish = true;
 		out.textContent = a;
-		console.log(a, b, sign);
+	};
+}
+
+const observer = new MutationObserver(
+	function () {
+		if (a.toString().length > 8) {
+			out.style.fontSize = 400 / a.toString().length + 'px';
+			if (b.toString().length > 8) {
+				out.style.fontSize = 400 / b.toString().length + 'px';
+			}
+		} else if (b.toString().length > 8) {
+			out.style.fontSize = 400 / b.toString().length + 'px';
+		} else {
+			out.style.fontSize = '44px';
+		}
 	}
-};
+);
+observer.observe(out, { childList: true });
