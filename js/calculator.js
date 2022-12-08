@@ -33,36 +33,59 @@ document.querySelector('.buttons').onclick = (event) => {
 			if (key === '.' && a.includes('.')) {
 				a += '';
 				out.textContent = a;
+				console.log(a, b, sign)
 			} else {
 				a += key;
 				out.textContent = a;
+				console.log(a, b, sign)
+				for (i = 0; i < a.length; i++) {
+					if (a[0] == 0) {
+						a = 0;
+						console.log(a, b, sign)
+						out.textContent = 0;
+						return;
+					}
+				}
 			}
 		} else if (a !== '' && b !== '' && finish) {
 			b = key;
 			finish = false;
 			out.textContent = b;
+			console.log(a, b, sign)
 		}
 		else {
 			if (key === '.' && b.includes('.')) {
 				b += '';
 				out.textContent = b;
+				console.log(a, b, sign)
 			} else {
 				b += key;
 				out.textContent = b;
+				console.log(a, b, sign)
+				for (j = 0; j < b.length; j++) {
+					if (b[0] == 0) {
+						b = 0;
+						console.log(a, b, sign)
+						out.textContent = 0;
+						return;
+					}
+				}
 			}
 		}
 		return;
 	}
+
 	if (action.includes(key)) {
 		sign = key;
 		out.textContent = sign;
+		console.log(a, b, sign)
 		if (key === '+/-') {
 			a = (-1) * a;
 			out.textContent = a;
+			console.log(a, b, sign)
 		}
 		return;
 	}
-
 	if (key === '=' && a == '' && b == '') {
 		out.textContent = 0;
 		return;
@@ -83,10 +106,6 @@ document.querySelector('.buttons').onclick = (event) => {
 			case "%":
 				a = (a / 100) * b;
 				break;
-			// case "+/-":
-			// 	a = a * (-1);
-			// 	b = b * (-1);
-			// 	break;
 			case "/":
 				if (b === '0') {
 					out.textContent = 'Ошибка';
@@ -100,6 +119,7 @@ document.querySelector('.buttons').onclick = (event) => {
 		}
 		finish = true;
 		out.textContent = a;
+		console.log(a, b, sign)
 	};
 }
 
