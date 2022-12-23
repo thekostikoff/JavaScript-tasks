@@ -2,8 +2,6 @@ let num = '';
 const out = document.querySelector('.calc__screen p');
 const btn = document.querySelectorAll('.btn');
 
-let arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-let arraySign = ['+', '-', 'Х', '/', '%', '+/-'];
 out.textContent = '';
 
 function clearAll() {
@@ -15,7 +13,11 @@ function equal() {
 	result = out.textContent;
 	out.textContent = eval(result);
 }
-// document.querySelector('.equal').addEventListener('click', equal());
+function plusminus(minus) {
+	num += minus;
+	out.textContent = num;
+	return num;
+}
 
 document.querySelector('.ac').onclick = clearAll;
 
@@ -29,6 +31,9 @@ document.querySelector('.buttons').onclick = (event) => {
 	out.textContent = num;
 	console.log(out.textContent);
 }
+
+
+
 
 
 
