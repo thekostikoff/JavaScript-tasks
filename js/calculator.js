@@ -20,16 +20,24 @@ function plusminus(minus) {
 }
 function percent() {
 	result = out.textContent;
-	let a = result.match(/^\d+/gm);
+	let a = result.match(/^.\d+/gm);
 	let b = result.match(/\d+$/gm);
-	let sign = result.match(/\D/gm);
+	let sign = result.match(/\b\D\b/gm);
 	console.log(a, b, sign);
+	if (a == '0' || b == '0') {
+		out.textContent = 0;
+	}
 	if (sign == '-') {
 		out.textContent = a - (a / 100 * b);
+		if (Number(a) < 0) {
+			out.textContent = a - (Math.abs(a) / 100 * b);
+		}
 		return result;
 	}
 	if (sign == '+') {
 		out.textContent = a + (a / 100 * b);
+		console.log(a, b, sign);
+		console.log(result);
 		return result;
 	}
 	if (sign == '/') {
