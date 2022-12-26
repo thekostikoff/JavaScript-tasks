@@ -1,4 +1,5 @@
 let num = '';
+let result = '';
 const out = document.querySelector('.calc__screen p');
 const btn = document.querySelectorAll('.btn');
 
@@ -9,7 +10,6 @@ function clearAll() {
 	out.textContent = 0;
 }
 function equal() {
-	let result = '';
 	result = out.textContent;
 	out.textContent = eval(result);
 }
@@ -18,6 +18,37 @@ function plusminus(minus) {
 	out.textContent = num;
 	return num;
 }
+function percent() {
+	result = out.textContent;
+	let a = result.match(/^\d+/gm);
+	let b = result.match(/\d+$/gm);
+	let sign = result.match(/\D/gm);
+	console.log(a, b, sign);
+	if (sign == '-') {
+		out.textContent = a - (a / 100 * b);
+		return result;
+	}
+	if (sign == '+') {
+		out.textContent = a + (a / 100 * b);
+		return result;
+	}
+	if (sign == '/') {
+		out.textContent = a / (a * b / 100);
+		return result;
+	}
+	if (sign == '*') {
+		out.textContent = a * (a * b / 100);
+		return result;
+	}
+	for (k = 0; k < result.length; k++) {
+		if (result[k] !== '+' || result[k] !== '-' || result[k] !== '*' || result[k] !== '/') {
+			out.textContent = eval(result / 100);
+		}
+	}
+}
+
+
+
 
 document.querySelector('.ac').onclick = clearAll;
 
@@ -30,7 +61,11 @@ document.querySelector('.buttons').onclick = (event) => {
 	num += key;
 	out.textContent = num;
 	console.log(out.textContent);
+
+
 }
+
+
 
 
 
