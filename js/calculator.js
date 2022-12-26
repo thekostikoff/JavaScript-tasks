@@ -29,23 +29,30 @@ function percent() {
 	}
 	if (sign == '-') {
 		out.textContent = a - (a / 100 * b);
-		if (Number(a) < 0) {
+		if (a < 0) {
 			out.textContent = a - (Math.abs(a) / 100 * b);
 		}
 		return result;
 	}
 	if (sign == '+') {
 		out.textContent = a + (a / 100 * b);
-		console.log(a, b, sign);
-		console.log(result);
+		if (a < 0) {
+			out.textContent = a + (Math.abs(a) / 100 * b);
+		}
 		return result;
 	}
 	if (sign == '/') {
 		out.textContent = a / (a * b / 100);
+		if (a < 0) {
+			out.textContent = (-1) * a / (Math.abs(a) * b / 100);
+		}
 		return result;
 	}
 	if (sign == '*') {
 		out.textContent = a * (a * b / 100);
+		if (a < 0) {
+			out.textContent = (-1) * a * (Math.abs(a) * b / 100);
+		}
 		return result;
 	}
 	for (k = 0; k < result.length; k++) {
