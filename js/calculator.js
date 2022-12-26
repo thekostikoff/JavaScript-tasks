@@ -20,7 +20,7 @@ function plusminus(minus) {
 }
 function percent() {
 	result = out.textContent;
-	let a = result.match(/^.\d+/gm);
+	let a = result.match(/^\d+/gm) || result.match(/^.\d+/gm);;
 	let b = result.match(/\d+$/gm);
 	let sign = result.match(/\b\D\b/gm);
 	console.log(a, b, sign);
@@ -36,9 +36,9 @@ function percent() {
 	}
 	if (sign == '+') {
 		out.textContent = a + (a / 100 * b);
-		if (a < 0) {
-			out.textContent = a + (Math.abs(a) / 100 * b);
-		}
+		// if (a < 0) {
+		// 	out.textContent = a + (Math.abs(a) / 100 * b);
+		// }
 		return result;
 	}
 	if (sign == '/') {
