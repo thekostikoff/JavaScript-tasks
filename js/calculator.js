@@ -30,10 +30,12 @@ function percent() {
 	}
 	if (sign == '-') {
 		out.textContent = a - (a / 100 * b);
+		num = out.textContent;
 		console.log(result);
 		console.log(out.textContent);
 		if (a < 0) {
 			out.textContent = a - (Math.abs(a) / 100 * b);
+			num = out.textContent;
 			console.log(out.textContent);
 			console.log(result);
 		}
@@ -41,28 +43,35 @@ function percent() {
 	}
 	if (sign == '+') {
 		out.textContent = a + (a / 100 * b);
+		num = out.textContent;
 		if (a < 0) {
 			out.textContent = a + (Math.abs(a) / 100 * b);
+			num = out.textContent;
 		}
 		return out.textContent;
 	}
 	if (sign == '/') {
 		out.textContent = a / (a * b / 100);
+		num = out.textContent;
 		if (a < 0) {
 			out.textContent = (-1) * a / (Math.abs(a) * b / 100);
+			num = out.textContent;
 		}
 		return out.textContent;
 	}
 	if (sign == '*') {
 		out.textContent = a * (a * b / 100);
+		num = out.textContent;
 		if (a < 0) {
 			out.textContent = (-1) * a * (Math.abs(a) * b / 100);
+			num = out.textContent;
 		}
 		return out.textContent;
 	}
 	for (k = 0; k < result.length; k++) {
 		if (result[k] !== '+' || result[k] !== '-' || result[k] !== '*' || result[k] !== '/') {
 			out.textContent = eval(result / 100);
+			num = out.textContent;
 		}
 	}
 }
