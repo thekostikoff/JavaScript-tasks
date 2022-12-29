@@ -12,18 +12,18 @@ function clearAll() {
 function equal() {
 	result = out.textContent;
 	out.textContent = eval(result);
+	num = out.textContent;
 }
 function plusminus(minus) {
 	num += minus;
 	out.textContent = num;
 	return num;
 }
-
 function percent() {
 	result = out.textContent;
-	let a = result.match(/^\d+/gm) || result.match(/^.\d+/gm);;
+	let a = result.match(/^\d+/gm) || result.match(/^.\d+/gm) || result.match(/^.\d+\.\d+/gm);
 	let b = result.match(/\d+$/gm);
-	let sign = result.match(/\b\D\b/gm);
+	let sign = result.match(/\b\+\b/gm) || result.match(/\b\-\b/gm) || result.match(/\b\*\b/gm) || result.match(/\b\/\b/gm);
 	console.log(a, b, sign);
 	if (a == '0' || b == '0') {
 		out.textContent = 0;
@@ -88,26 +88,49 @@ document.querySelector('.buttons').onclick = (event) => {
 	out.textContent = num;
 	console.log(out.textContent);
 
+	result = out.textContent;
+
 	if (key == 0) {
 		num = 0;
 		out.textContent = '0';
 	}
-	if (key == '+' && out.textContent.includes('+') || key == '-' && out.textContent.includes('-') || key == '*' && out.textContent.includes('*') || key == '/' && out.textContent.includes('/') || key == '.' && out.textContent.includes('.')) {
-		result = out.textContent;
-		if ((/\D\D/gm).test(out.textContent) === true) {
-			num = '';
-			out.textContent = 'mistake'
-		}
+
+	result = out.textContent;
+	if ((/^\D+/gm).test(result) === true) {
+		out.textContent = '';
+		num = '';
 	}
-	if (key == '.' && out.textContent.includes('.')) {
-		result = out.textContent;
-		if ((/\D\D/gm).test(out.textContent) === true || (/\d\D\d\D/gm).test(out.textContent) === true) {
-			num = '';
-			out.textContent = 'mistake'
-		}
+	if ((/\d+\.\./gm).test(out.textContent) === true) {
+		result = result.match(/\d+\./gm);
+		out.textContent = result;
+		num = out.textContent;
+		console.log(result);
+		console.log(num);
+		console.log(out.textContent);
+	}
+	if ((/\d+\.\d+\./gm).test(out.textContent) === true) {
+		result = result.match(/\d+\.\d+/gm);
+		out.textContent = result;
+		num = out.textContent;
+		console.log(result);
+		console.log(num);
+		console.log(out.textContent);
+	}
+
+	if ((/\d\+\+/gm).test(result) === true || (/d\-\-/gm).test(result) === true || (/d\/\//gm).test(result) === true || (/d\*\*/gm).test(result) === true) {
+
+		result = result.match(/\d+\+/gm) || result.match(/\d+\-/gm) || result.match(/\d+\*/gm) || result.match(/\d+\//gm);
+		out.textContent = result;
+		num = result;
+		console.log(result);
+		console.log(num);
+		console.log(out.textContent);
 	}
 
 }
+
+
+
 
 
 
