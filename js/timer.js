@@ -59,16 +59,17 @@ function go() {
 function stop() {
 	clearInterval(interval);
 	stopText.innerHTML = "Продолжить";
-	document.getElementById("stop").classList.toggle("continue");
-	console.log(document.querySelectorAll(".continue"));
+	stopText.setAttribute("id", "stop__continue");
+	document.getElementById("stop__continue").classList.toggle("continue");
+	document.getElementById("stop__continue").onclick =
+		continueDo;
 
 }
+
 document.getElementById("stop").addEventListener('click', () => stop());
 
 
 function continueDo() {
-	console.log(a);
-	stopText.innerHTML = "Стоп";
 	result = a;
 	interval = setInterval(function updateClocks() {
 		let hours = Math.floor(result / 3600);
@@ -87,10 +88,9 @@ function continueDo() {
 			result--;
 		}
 	}, time);
-	document.getElementById("stop").classList.remove("continue");
+	stopText.innerHTML = "Стоп";
+	document.getElementById("stop__continue").setAttribute("id", "stop");
 }
-
-// continueDoIt.addEventListener('click', () => continueDo());
 
 
 
