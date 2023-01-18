@@ -7,7 +7,6 @@ let second = Number(document.getElementById("second").value);
 let interval;
 let result;
 
-
 function music() {
 	let audio = new Audio();
 	audio.src = 'ooo.mp3';
@@ -30,7 +29,6 @@ function refresh() {
 	return result;
 }
 
-
 function go() {
 	let hour = Number(document.getElementById("hour").value);
 	let minute = Number(document.getElementById("minute").value);
@@ -52,7 +50,6 @@ function go() {
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 			clock.innerHTML = `${hours}:${minutes}:${seconds}`;
 			result--;
-
 		}
 	}, time);
 }
@@ -61,12 +58,10 @@ function stop() {
 	clearInterval(interval);
 	stopText.innerHTML = "Продолжить";
 	stopText.classList.toggle("continue");
-
 	document.querySelector("button.stop.continue").onclick =
 		continueDo;
 }
 document.querySelector("button.stop").onclick = stop;
-
 
 function continueDo() {
 	result;
