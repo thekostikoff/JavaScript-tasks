@@ -13,6 +13,6 @@
 .result {
 	font-size: 100px;
 }
-#stop__continue {
+.button.stop.continue {
 	background-color: aqua;
 }

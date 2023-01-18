@@ -5,7 +5,8 @@ let hour = Number(document.getElementById("hour").value);
 let minute = Number(document.getElementById("minute").value);
 let second = Number(document.getElementById("second").value);
 let interval;
-let a;
+let result;
+
 
 function music() {
 	let audio = new Audio();
@@ -17,7 +18,7 @@ function refresh() {
 	let hour = 0;
 	let minute = 0;
 	let second = 0;
-	let result = hour * 3600 + minute * 60 + second;
+	result = hour * 3600 + minute * 60 + second;
 	let hours = Math.floor(result / 3600);
 	let minutes = Math.floor((result - (hours * 3600)) / 60);
 	let seconds = result % 60;
@@ -29,11 +30,12 @@ function refresh() {
 	return result;
 }
 
+
 function go() {
 	let hour = Number(document.getElementById("hour").value);
 	let minute = Number(document.getElementById("minute").value);
 	let second = Number(document.getElementById("second").value);
-	let result = hour * 3600 + minute * 60 + second;
+	result = hour * 3600 + minute * 60 + second;
 	console.log(result)
 	interval = setInterval(function updateClocks() {
 		let hours = Math.floor(result / 3600);
@@ -50,8 +52,7 @@ function go() {
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 			clock.innerHTML = `${hours}:${minutes}:${seconds}`;
 			result--;
-			a = result;
-			console.log(a);
+
 		}
 	}, time);
 }
@@ -59,18 +60,16 @@ function go() {
 function stop() {
 	clearInterval(interval);
 	stopText.innerHTML = "Продолжить";
-	stopText.setAttribute("id", "stop__continue");
-	document.getElementById("stop__continue").classList.toggle("continue");
-	document.getElementById("stop__continue").onclick =
+	stopText.classList.toggle("continue");
+
+	document.querySelector("button.stop.continue").onclick =
 		continueDo;
-
 }
-
-document.getElementById("stop").addEventListener('click', () => stop());
+document.querySelector("button.stop").onclick = stop;
 
 
 function continueDo() {
-	result = a;
+	result;
 	interval = setInterval(function updateClocks() {
 		let hours = Math.floor(result / 3600);
 		let minutes = Math.floor((result - (hours * 3600)) / 60);
@@ -89,7 +88,8 @@ function continueDo() {
 		}
 	}, time);
 	stopText.innerHTML = "Стоп";
-	document.getElementById("stop__continue").setAttribute("id", "stop");
+	stopText.classList.remove("continue");
+	document.querySelector("button.stop").onclick = stop;
 }
 
 
