@@ -1,6 +1,6 @@
 const clock = document.getElementById("result");
 const stopText = document.getElementById("stop");
-let time = 1000;
+
 let hour = Number(document.getElementById("hour").value);
 let minute = Number(document.getElementById("minute").value);
 let second = Number(document.getElementById("second").value);
@@ -28,13 +28,16 @@ function refresh() {
 	clearInterval(interval);
 	return result;
 }
+document.getElementById("go").addEventListener('click', () => go());
+
 
 function go() {
+	clearInterval(interval);
 	let hour = Number(document.getElementById("hour").value);
 	let minute = Number(document.getElementById("minute").value);
 	let second = Number(document.getElementById("second").value);
+	const time = 1000;
 	result = hour * 3600 + minute * 60 + second;
-	console.log(result)
 	interval = setInterval(function updateClocks() {
 		let hours = Math.floor(result / 3600);
 		let minutes = Math.floor((result - (hours * 3600)) / 60);
@@ -52,6 +55,9 @@ function go() {
 			result--;
 		}
 	}, time);
+
+
+	return result;
 }
 
 function stop() {
@@ -65,6 +71,7 @@ document.querySelector("button.stop").onclick = stop;
 
 function continueDo() {
 	result;
+	const time = 1000;
 	interval = setInterval(function updateClocks() {
 		let hours = Math.floor(result / 3600);
 		let minutes = Math.floor((result - (hours * 3600)) / 60);
@@ -85,6 +92,7 @@ function continueDo() {
 	stopText.innerHTML = "Стоп";
 	stopText.classList.remove("continue");
 	document.querySelector("button.stop").onclick = stop;
+	return result;
 }
 
 
