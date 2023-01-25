@@ -1,0 +1,18 @@
+.timer {
+	display: flex;
+	flex-direction: column;
+}
+.buttons {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+}
+.button {
+	width: 100px;
+}
+.result {
+	font-size: 100px;
+}
+.button.stop.continue {
+	background-color: aqua;
+}
