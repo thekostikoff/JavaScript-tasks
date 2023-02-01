@@ -55,8 +55,6 @@ function go() {
 			result--;
 		}
 	}, time);
-
-
 	return result;
 }
 
@@ -66,6 +64,7 @@ function stop() {
 	stopText.classList.toggle("continue");
 	document.querySelector("button.stop.continue").onclick =
 		continueDo;
+
 }
 document.querySelector("button.stop").onclick = stop;
 
